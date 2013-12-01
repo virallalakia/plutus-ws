@@ -69,27 +69,24 @@
 			</props>
 		</property>
 	</bean>
-	
+
 	<!-- transaction -->
 	<tx:annotation-driven />
 	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<!-- plutus services -->
-	<bean id="testUserDAO" class="com.voidmainworld.plutus.dao.testuser.impl.TestUserDAOImpl">
-	</bean>
+	<!-- plutus-auth services -->
+	<bean id="userDAO" class="com.voidmainworld.plutus.dao.user.impl.UserDAOImpl" />
 
-	<bean id="testUserService" class="com.voidmainworld.plutus.daoservice.testuser.impl.TestUserServiceImpl">
-	</bean>
+	<bean id="userService" class="com.voidmainworld.plutus.daoservice.user.impl.UserServiceImpl" />
 
-	<bean id="testService" class="com.voidmainworld.plutus.service.impl.TestServiceImpl">
-	</bean>
+	<bean id="authService" class="com.voidmainworld.plutus.service.auth.impl.AuthServiceImpl" />
 
 	<!-- REST - JAX-RS -->
 	<jaxrs:server id="rsApplicationService" address="${rest.path}">
 		<jaxrs:serviceBeans>
-			<ref bean="testService" />
+			<ref bean="authService" />
 		</jaxrs:serviceBeans>
 
 		<jaxrs:providers>

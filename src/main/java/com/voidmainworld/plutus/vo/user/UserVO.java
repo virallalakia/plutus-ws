@@ -1,31 +1,34 @@
 package com.voidmainworld.plutus.vo.user;
 
-import java.io.Serializable;
+import com.voidmainworld.plutus.vo.DataVOI;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-public class UserVO implements Serializable {
+public class UserVO implements DataVOI {
 
 	private static final long	serialVersionUID	= 7456046476491395764L;
 
 	private int					id;
-	private String				name;
+	private String				username;
+	private String				password;
+	private long				createdDate;
+	private long				updatedDate;
 
 	public UserVO() {
 		super();
 	}
 
-	public UserVO(int id) {
-		this(id, Long.toString(id));
+	public UserVO(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
 	}
 
-	public UserVO(int id, String name) {
+	public UserVO(int id, String username, String password, long createdDate, long updatedDate) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.username = username;
+		this.password = password;
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
 	}
 
 	public int getId() {
@@ -36,17 +39,52 @@ public class UserVO implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public long getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(long createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public long getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(long updatedDate) {
+		this.updatedDate = updatedDate;
 	}
 
 	@Override
 	public String toString() {
-		return "UserVO [id=" + id + ", name=" + name + "]";
+		StringBuilder builder = new StringBuilder();
+		builder
+				.append("UserVO [id=")
+				.append(id)
+				.append(", username=")
+				.append(username)
+				.append(", createdDate=")
+				.append(createdDate)
+				.append(", updatedDate=")
+				.append(updatedDate)
+				.append("]");
+		return builder.toString();
 	}
 
 }

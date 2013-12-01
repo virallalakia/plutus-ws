@@ -2,9 +2,7 @@ package com.voidmainworld.plutus.vo;
 
 import java.util.List;
 
-public class ListVO extends PlutusBaseVO {
-
-	private static final long serialVersionUID = 320645122810539810L;
+public class ListVO {
 
 	private List<? extends Object> list;
 
