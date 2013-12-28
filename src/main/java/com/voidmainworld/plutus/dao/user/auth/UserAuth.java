@@ -1,4 +1,4 @@
-package com.voidmainworld.plutus.dao.user;
+package com.voidmainworld.plutus.dao.user.auth;
 
 import java.util.Date;
 
@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER")
-public class User {
+@Table(name = "USER_AUTH")
+public class UserAuth {
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue
@@ -18,6 +18,9 @@ public class User {
 
 	@Column(name = "USERNAME")
 	private String	username;
+
+	@Column(name = "PASSWORD")
+	private String	password;
 
 	@Column(name = "CREATED_DATE")
 	@GeneratedValue
@@ -27,22 +30,19 @@ public class User {
 	@GeneratedValue
 	private Date	updatedDate;
 
-	private User() {
+	private UserAuth() {
 		super();
 	}
 
-	public User(String username) {
+	public UserAuth(String username, String password) {
 		this();
 		this.username = username;
+		this.password = password;
 	}
 
-	public User(Integer id, String username) {
-		this(username);
+	public UserAuth(Integer id, String username, String password, Date createdDate, Date updatedDate) {
+		this(username, password);
 		this.id = id;
-	}
-
-	public User(Integer id, String username, Date createdDate, Date updatedDate) {
-		this(id, username);
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
 	}
@@ -61,6 +61,14 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Date getCreatedDate() {

@@ -78,6 +78,7 @@
 
 	<!-- plutus-auth services -->
 	<bean id="userDAO" class="com.voidmainworld.plutus.dao.user.impl.UserDAOImpl" />
+	<bean id="userAuthDAO" class="com.voidmainworld.plutus.dao.user.auth.impl.UserAuthDAOImpl" />
 
 	<bean id="userService" class="com.voidmainworld.plutus.daoservice.user.impl.UserServiceImpl" />
 

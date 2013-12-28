@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.voidmainworld.plutus.dao.user.User;
 import com.voidmainworld.plutus.daoservice.user.UserService;
 import com.voidmainworld.plutus.service.auth.AuthService;
-import com.voidmainworld.plutus.util.AuthUtil;
 import com.voidmainworld.plutus.vo.BaseResponseVO;
 import com.voidmainworld.plutus.vo.BooleanVO;
 import com.voidmainworld.plutus.vo.ErrorVO;
@@ -33,7 +32,7 @@ public class AuthServiceImpl implements AuthService {
 	@Path("/login")
 	public BaseResponseVO auth(UserVO userVO) {
 		User user = userService.getUser(userVO.getUsername());
-		if (user == null || !user.getPassword().equals(AuthUtil.digest(userVO.getPassword()))) {
+		if (user == null || !userService.checkAuth(userVO.getUsername(), userVO.getPassword())) {
 			return new BaseResponseVO(false, 401, ErrorVO.ERROR401);
 		}
 		return new BaseResponseVO(new UserVO(
@@ -47,7 +46,7 @@ public class AuthServiceImpl implements AuthService {
 	@POST
 	@Path("/signup")
 	public BaseResponseVO signup(UserVO userVO) {
-		userService.addUser(new User(userVO.getUsername(), userVO.getPassword()));
+		userService.addUser(new User(userVO.getUsername()), userVO.getPassword());
 		User user = userService.getUser(userVO.getUsername());
 
 		return new BaseResponseVO(new UserVO(

@@ -27,7 +27,7 @@ public class ErrorVO implements Serializable {
 	private int					code;
 	private String				message;
 
-	public ErrorVO(int code, String message) {
+	private ErrorVO(int code, String message) {
 		super();
 		this.code = code;
 		this.message = message;

@@ -4,15 +4,16 @@ import com.voidmainworld.plutus.dao.user.User;
 
 public interface UserService {
 
-	User getUser(int id);
-
 	User getUser(String username);
 
-	void addUser(User user);
+	void addUser(User user, String password);
 
 	void updateUser(User user);
 
-	void removeUser(int id);
-
 	void removeUser(String username);
+
+	boolean checkAuth(String username, String password);
+
+	void changePassword(String username, String password);
+
 }
